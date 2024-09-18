@@ -1,7 +1,7 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
+import 'package:crypto_wallet/sign_up_screen.dart';
+import 'package:crypto_wallet/login_screen.dart';
 
 class SplashScreen2 extends StatefulWidget {
   const SplashScreen2({super.key});
@@ -11,18 +11,35 @@ class SplashScreen2 extends StatefulWidget {
 }
 
 class _SplashScreen2State extends State<SplashScreen2> {
-  void _onGetStartedPressed(){
-    Navigator.push(context,
-      MaterialPageRoute(builder: (context) => SplashScreen2()),
+  void _onSignUpPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SignUpScreen()),
     );
   }
+
+  void _onLogInPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Get screen height and width for responsive layout
+    var screenSize = MediaQuery.of(context).size;
+    var screenHeight = screenSize.height;
+    var screenWidth = screenSize.width;
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: Stack(
         children: [
+          // Background Image
           Container(
+            width: screenWidth,
+            height: screenHeight,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/autumn.jpg'),
@@ -34,15 +51,15 @@ class _SplashScreen2State extends State<SplashScreen2> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 150),
+              SizedBox(height: screenHeight * 0.2),  // Adjusted for screen height
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 160),
-                height: 80,
-                width: 80,
+                margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.4),
+                height: screenHeight * 0.1, // Responsive height
+                width: screenWidth * 0.2,   // Responsive width
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.orangeAccent,               // Dark to Transparent
+                      Colors.orangeAccent,
                       Colors.black.withOpacity(0.0),
                     ],
                     begin: Alignment.topCenter,
@@ -52,38 +69,40 @@ class _SplashScreen2State extends State<SplashScreen2> {
                 ),
                 child: Image.asset('assets/bitcoin.png'),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: screenHeight * 0.02),
               Container(
                 margin: EdgeInsets.zero,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                   Text(
+                    Text(
                       'Already have an account',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: screenWidth * 0.045,  // Responsive font size
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: screenHeight * 0.03),
                     InkWell(
-                      onTap: _onGetStartedPressed,
+                      onTap: _onLogInPressed,
                       borderRadius: BorderRadius.circular(8),
                       child: Container(
-                        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                        height: 45,
+                        margin: EdgeInsets.only(
+                            left: screenWidth * 0.05,
+                            right: screenWidth * 0.05),
+                        height: screenHeight * 0.06,  // Responsive button height
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.amberAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Ink(
-                          child: const Center(
+                          child: Center(
                             child: Text(
                               'Login',
                               style: TextStyle(
-                                fontSize: 17,
+                                fontSize: screenWidth * 0.045,  // Responsive font size
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                               ),
@@ -92,35 +111,35 @@ class _SplashScreen2State extends State<SplashScreen2> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
-
-
+                    SizedBox(height: screenHeight * 0.02),
                     Text(
                       'or',
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: screenWidth * 0.045,  // Responsive font size
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: screenHeight * 0.02),
                     InkWell(
-                      onTap: _onGetStartedPressed,
+                      onTap: _onSignUpPressed,
                       borderRadius: BorderRadius.circular(8),
                       child: Container(
-                        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                        height: 45,
+                        margin: EdgeInsets.only(
+                            left: screenWidth * 0.05,
+                            right: screenWidth * 0.05),
+                        height: screenHeight * 0.06,  // Responsive button height
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.amberAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Ink(
-                          child: const Center(
+                          child: Center(
                             child: Text(
                               'SignUp',
                               style: TextStyle(
-                                fontSize: 17,
+                                fontSize: screenWidth * 0.045,  // Responsive font size
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                               ),
@@ -129,15 +148,13 @@ class _SplashScreen2State extends State<SplashScreen2> {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
               Spacer(),
-
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                height: 140,
+                height: screenHeight * 0.2,  // Responsive height
                 width: double.infinity,
                 child: Stack(
                   children: [
@@ -148,13 +165,12 @@ class _SplashScreen2State extends State<SplashScreen2> {
                         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.2),  // Adjust the color and opacity
+                            color: Colors.black.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(25),
                           ),
                         ),
                       ),
                     ),
-
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -162,15 +178,15 @@ class _SplashScreen2State extends State<SplashScreen2> {
                         Text(
                           'Crypto news',
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: screenWidth * 0.045,  // Responsive font size
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                         ),
-                       Text(
+                        Text(
                           'Explore Our Crypto World',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: screenWidth * 0.04,  // Responsive font size
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -182,7 +198,7 @@ class _SplashScreen2State extends State<SplashScreen2> {
                             Text(
                               'You can buy and sell the NFT\'s of the',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: screenWidth * 0.035,  // Responsive font size
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white,
                               ),
@@ -191,7 +207,7 @@ class _SplashScreen2State extends State<SplashScreen2> {
                               child: Text(
                                 'best artists in the world.',
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: screenWidth * 0.035,  // Responsive font size
                                   fontWeight: FontWeight.w300,
                                   color: Colors.white,
                                 ),
@@ -199,7 +215,6 @@ class _SplashScreen2State extends State<SplashScreen2> {
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ],
