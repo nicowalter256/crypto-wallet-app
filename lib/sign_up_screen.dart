@@ -128,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               asset: 'assets/google.png',
                               label: 'Continue with Google',
                             ),
-                            // Facebook Sign-Up Button
+                            // Facebook Sign-Up Butto
                             _buildSocialButton(
                               onTap: _navigateToHomeScreen,
                               asset: 'assets/facebook.png',
