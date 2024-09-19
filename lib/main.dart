@@ -1,4 +1,5 @@
 
+import 'package:crypto_wallet/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_wallet/splash_screen1.dart';
 
@@ -14,11 +15,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: const Color.fromRGBO(32, 39, 55, 100),
+        primaryColor: Color.fromRGBO(32, 39, 55, 100),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen1(),
+      home: HomeScreen(),
     );
   }
 }
