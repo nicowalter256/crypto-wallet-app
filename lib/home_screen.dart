@@ -27,9 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const SizedBox(height: 40),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: const [
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Row(
+              children: [
                 Icon(
                     Icons.menu, size: 30, color: Colors.white
                 ),
@@ -166,11 +166,11 @@ class _HomeScreenState extends State<HomeScreen> {
           Stack(
             children: <Widget>[
               AspectRatio(
-                aspectRatio: 1.70,
+                aspectRatio: 1.75,
                 child: Padding(
                   padding: const EdgeInsets.only(
-                    right: 18,
-                    left: 12,
+                    right: 20,
+                    left: 0,
                     top: 24,
                     bottom: 12,
                   ),
@@ -220,14 +220,14 @@ class _HomeScreenState extends State<HomeScreen> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
-            strokeWidth: 1,
+            //color: Color(0xff37434d),
+            strokeWidth: 0,
           );
         },
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
-            strokeWidth: 1,
+            //color: Color(0xff37434d),
+            strokeWidth: 0,
           );
         },
       ),
@@ -254,20 +254,33 @@ class _HomeScreenState extends State<HomeScreen> {
         LineChartBarData(
           spots: const [
             FlSpot(0, 3),
-            FlSpot(2.6, 2),
+            FlSpot(0.5, 1),
+            FlSpot(1, 2),
+            FlSpot(2.2, 0.3),
+            FlSpot(2.6, 0.5),
+            FlSpot(3.0, 2.0),
             FlSpot(4.9, 5),
             FlSpot(6.8, 3.1),
             FlSpot(8, 4),
             FlSpot(9.5, 3),
-            FlSpot(11, 4),
+            FlSpot(9.6, 4),
+            FlSpot(9.7, 5.0),
+            FlSpot(9.8, 1.4),
+            FlSpot(10, 2.0),
+            FlSpot(10.2, 5),
+            FlSpot(10.3, 3.1),
+            FlSpot(10.5, 4),
+            FlSpot(10.6, 3),
+            FlSpot(10.9, 4),
+            FlSpot(11, 5.0),
           ],
-          isCurved: true,
+          isCurved: false,
           gradient: LinearGradient(
             colors: gradientColors,
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
-          barWidth: 5,
+          barWidth: 2,
           isStrokeCapRound: true,
           dotData: const FlDotData(
             show: false,
@@ -290,25 +303,25 @@ class _HomeScreenState extends State<HomeScreen> {
   LineChartData avgData() {
     return LineChartData(
       gridData: FlGridData(
-        show: true,
-        drawVerticalLine: true,
-        horizontalInterval: 1,
-        verticalInterval: 1,
+        show: false,
+        drawVerticalLine: false,
+        horizontalInterval: 0,
+        verticalInterval: 0,
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
-            strokeWidth: 1,
+            color: Colors.teal,
+            strokeWidth: 0,
           );
         },
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
-            strokeWidth: 1,
+            color: Colors.grey,
+            strokeWidth: 0,
           );
         },
       ),
       titlesData: FlTitlesData(
-        show: true,
+        show: false,
         rightTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
@@ -317,8 +330,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        show: false,
+        //border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
       maxX: 11,
@@ -342,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen> {
             end: Alignment.centerRight,
           ),
           barWidth: 5,
-          isStrokeCapRound: true,
+          isStrokeCapRound: false,
           dotData: const FlDotData(
             show: false,
           ),
