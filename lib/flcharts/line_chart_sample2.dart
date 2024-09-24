@@ -85,6 +85,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
                       ),
                     ),
                   ),
+                  Positioned(
+                    bottom: 15,
+                    left: 20,
+                    child: Image.asset(
+                      'assets/bitcoin.png',
+                    ),
+                  ),
                 ],
               ),
             ),

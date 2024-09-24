@@ -38,7 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: const Row(
               children: [
-                Icon(Icons.menu, size: 30, color: Colors.white),
+                Icon(
+                  Icons.menu,
+                  size: 30,
+                  color: Colors.white,
+                ),
                 Spacer(),
                 Icon(Icons.account_balance_wallet,
                     size: 30, color: Colors.white),
@@ -69,11 +73,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(
                       boxShadow: const [
                         BoxShadow(
-                          blurRadius: 2,
-                          color: Color.fromARGB(255, 119, 85, 255),
+                          blurRadius: 5,
+                          color: Color.fromRGBO(76, 27, 181, 100),
+                          blurStyle: BlurStyle.outer,
                         )
                       ],
-                      color: const Color.fromARGB(255, 119, 85, 255),
+                      color: const Color.fromARGB(255, 71, 74, 255),
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Container(
@@ -120,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               dropdownColor:
-                                  const Color.fromARGB(255, 119, 85, 255),
+                                  const Color.fromARGB(255, 71, 74, 255),
                               items: items.map(
                                 (String item) {
                                   return DropdownMenuItem<String>(
@@ -144,7 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               underline:
                                   Container(), // Removes the default underline
                               style: const TextStyle(
-                                  color: Colors.deepPurple, fontSize: 16),
+                                color: Colors.deepPurple,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ],
@@ -168,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 6,
                 decoration: BoxDecoration(
                   color: _currentPage == index
-                      ? const Color.fromRGBO(108, 61, 255, 100)
+                      ? const Color.fromARGB(255, 71, 74, 255)
                       : Colors.grey,
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -193,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 180,
                   decoration: BoxDecoration(
                     color: isFirstButtonActive
-                        ? const Color.fromARGB(255, 110, 74, 255)
+                        ? const Color.fromARGB(255, 71, 74, 255)
                         : Colors.transparent,
                     border: Border.all(
                       color: isFirstButtonActive
@@ -226,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 180,
                   decoration: BoxDecoration(
                     color: isSecondButtonActive
-                        ? const Color.fromARGB(255, 110, 74, 255)
+                        ? const Color.fromARGB(255, 71, 74, 255)
                         : Colors.transparent,
                     border: Border.all(
                       color: isSecondButtonActive
