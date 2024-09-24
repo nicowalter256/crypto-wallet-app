@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './flcharts/line_chart_sample2.dart';
+import './flcharts/portfolio.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,6 +18,18 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
+  ];
+  List<Color> scrollGradientColors = [
+    const Color.fromRGBO(107, 58, 255, 1),
+    const Color.fromARGB(255, 71, 74, 255),
+  ];
+  List<Color> currencyGradientColors = [
+    const Color.fromARGB(255, 118, 73, 255),
+    const Color.fromARGB(255, 71, 74, 255),
+  ];
+  List<Color> portfolioGradientColors = [
+    const Color.fromRGBO(49, 56, 74, 1),
+    const Color.fromRGBO(32, 39, 55, 100),
   ];
 
   // Dropdown items
@@ -81,7 +94,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           blurStyle: BlurStyle.outer,
                         )
                       ],
-                      color: const Color.fromARGB(255, 71, 74, 255),
+                      gradient: LinearGradient(
+                        colors: scrollGradientColors,
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Container(
@@ -112,11 +129,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             height: 30,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                color: Colors.white, // White outline
-                                width: 1, // 1px border width
+                              gradient: LinearGradient(
+                                colors: currencyGradientColors,
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
                               ),
+                              borderRadius: BorderRadius.circular(5),
                             ),
                             child: DropdownButton<String>(
                               value: selectedItem,
@@ -205,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 180,
                   decoration: BoxDecoration(
                     color: isFirstButtonActive
-                        ? const Color.fromARGB(255, 71, 74, 255)
+                        ? const Color.fromRGBO(107, 58, 255, 1)
                         : Colors.transparent,
                     border: Border.all(
                       color: isFirstButtonActive
@@ -238,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 180,
                   decoration: BoxDecoration(
                     color: isSecondButtonActive
-                        ? const Color.fromARGB(255, 71, 74, 255)
+                        ? const Color.fromRGBO(107, 58, 255, 1)
                         : Colors.transparent,
                     border: Border.all(
                       color: isSecondButtonActive
@@ -293,10 +311,18 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Container(
-            height: 60,
-            width: double.infinity,
-          )
+          const SizedBox(
+            height: 10,
+          ),
+          const Portfolio(),
+          const SizedBox(
+            height: 5,
+          ),
+          const Portfolio(),
+          const SizedBox(
+            height: 5,
+          ),
+          const Portfolio(),
         ],
       ),
     );
