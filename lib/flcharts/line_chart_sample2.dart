@@ -21,7 +21,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -32,8 +33,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.blue.withOpacity(0.4),
-                  Colors.purple.withOpacity(0.6),
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).primaryColor.withOpacity(0.5)
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -47,33 +48,40 @@ class _LineChartSample2State extends State<LineChartSample2> {
                   AspectRatio(
                     aspectRatio: 1,
                     child: Padding(
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       child: LineChart(
                         showAvg ? avgData() : mainData(),
                       ),
                     ),
                   ),
                   Positioned(
-                    top: 20,
-                    right: 20,
-                    child: SizedBox(
-                      width: 40,
-                      height: 34,
-                      child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            showAvg = !showAvg;
-                          });
-                        },
-                        child: Text(
-                          'avg',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: showAvg
-                                ? Colors.white.withOpacity(0.5)
-                                : Colors.white,
-                          ),
+                    top: 00,
+                    right: 00,
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          showAvg = !showAvg;
+                        });
+                      },
+                      child: Text(
+                        '+12.62%',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: showAvg
+                              ? Colors.white.withOpacity(0.5)
+                              : Colors.white,
                         ),
+                      ),
+                    ),
+                  ),
+                  const Positioned(
+                    top: 15,
+                    left: 20,
+                    child: Text(
+                      'BitCoin',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -156,7 +164,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           );
         },
       ),
-      titlesData: FlTitlesData(
+      titlesData: const FlTitlesData(
         show: false, // Disable titles for axes
       ),
       borderData: FlBorderData(
@@ -221,7 +229,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           );
         },
       ),
-      titlesData: FlTitlesData(
+      titlesData: const FlTitlesData(
         show: false, // Disable titles for axes
       ),
       borderData: FlBorderData(
