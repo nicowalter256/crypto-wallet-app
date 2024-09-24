@@ -1,11 +1,12 @@
-
 import 'package:crypto_wallet/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_wallet/splash_screen1.dart';
+import './flcharts/line_chart_sample2.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(32, 39, 55, 100),
+        primaryColor: const Color.fromRGBO(32, 39, 55, 100),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -23,4 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

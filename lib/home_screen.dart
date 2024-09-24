@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart';
+import './flcharts/line_chart_sample2.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,6 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
     const Color(0xff02d39a),
   ];
 
+  // Dropdown items
+  final List<String> items = [
+    'Smart Chain BEP - 20',
+    'Smart Chain GUY -21',
+    'Ethereum - 30'
+  ];
+  String? selectedItem = 'Smart Chain BEP - 20'; // Default selected item
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,13 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: const Row(
               children: [
-                Icon(
-                    Icons.menu, size: 30, color: Colors.white
-                ),
+                Icon(Icons.menu, size: 30, color: Colors.white),
                 Spacer(),
-                Icon(
-                    Icons.account_balance_wallet, size: 30, color: Colors.white
-                ),
+                Icon(Icons.account_balance_wallet,
+                    size: 30, color: Colors.white),
               ],
             ),
           ),
@@ -62,8 +67,88 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     height: 150,
                     decoration: BoxDecoration(
-                      color: const Color.fromRGBO(108, 61, 255, 100),
+                      boxShadow: const [
+                        BoxShadow(
+                          blurRadius: 2,
+                          color: Color.fromARGB(255, 119, 85, 255),
+                        )
+                      ],
+                      color: const Color.fromARGB(255, 119, 85, 255),
                       borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'CURRENT WALLET BALANCE',
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const Text(
+                            '\$3,293.6',
+                            style: TextStyle(
+                              fontSize: 35,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 2.5,
+                            ),
+                          ),
+                          // DropdownButton with decoration
+                          Container(
+                            margin: const EdgeInsets.only(right: 140),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            height: 30,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: Colors.white, // White outline
+                                width: 1, // 1px border width
+                              ),
+                            ),
+                            child: DropdownButton<String>(
+                              value: selectedItem,
+                              hint: const Text(
+                                'Smart Chain BEP - 20',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                              dropdownColor:
+                                  const Color.fromARGB(255, 119, 85, 255),
+                              items: items.map(
+                                (String item) {
+                                  return DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(item,
+                                        style: const TextStyle(
+                                            color: Colors.white)),
+                                  );
+                                },
+                              ).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  selectedItem = newValue;
+                                });
+                              },
+                              isExpanded: true,
+                              icon: const Icon(
+                                Icons.arrow_drop_down_sharp,
+                                color: Colors.white,
+                              ),
+                              underline:
+                                  Container(), // Removes the default underline
+                              style: const TextStyle(
+                                  color: Colors.deepPurple, fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -90,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
 
           // Two Buttons (Deposit, Withdraw)
           Row(
@@ -108,10 +193,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 180,
                   decoration: BoxDecoration(
                     color: isFirstButtonActive
-                        ? const Color.fromRGBO(108, 61, 255, 100)
+                        ? const Color.fromARGB(255, 110, 74, 255)
                         : Colors.transparent,
                     border: Border.all(
-                      color: isFirstButtonActive ? Colors.transparent : Colors.grey,
+                      color: isFirstButtonActive
+                          ? Colors.transparent
+                          : Colors.grey,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(10),
@@ -121,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Deposit',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -139,10 +226,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 180,
                   decoration: BoxDecoration(
                     color: isSecondButtonActive
-                        ? const Color.fromRGBO(108, 61, 255, 100)
+                        ? const Color.fromARGB(255, 110, 74, 255)
                         : Colors.transparent,
                     border: Border.all(
-                      color: isSecondButtonActive ? Colors.transparent : Colors.grey,
+                      color: isSecondButtonActive
+                          ? Colors.transparent
+                          : Colors.grey,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(10),
@@ -152,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Withdraw',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -160,217 +249,40 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 30),
-
-          // Line Chart
-          Stack(
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 1.75,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    right: 20,
-                    left: 0,
-                    top: 24,
-                    bottom: 12,
-                  ),
-                  child: LineChart(
-                    showAvg ? avgData() : mainData(),
-                  ),
+          const SizedBox(height: 20),
+          Container(
+            margin: const EdgeInsets.only(left: 20),
+            child: const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Favorites',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              Positioned(
-                top: 10,
-                right: 10,
-                child: SizedBox(
-                  width: 60,
-                  height: 34,
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        showAvg = !showAvg;
-                      });
-                    },
-                    child: Text(
-                      'avg',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: showAvg
-                            ? Colors.white.withOpacity(0.5)
-                            : Colors.white,
-                      ),
-                    ),
-                  ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          const LineChartSample2(),
+          const SizedBox(height: 20),
+          Container(
+            margin: const EdgeInsets.only(left: 20),
+            child: const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'My Portfolio',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),
-    );
-  }
-
-
-  LineChartData mainData() {
-    return LineChartData(
-      gridData: FlGridData(
-        show: true,
-        drawVerticalLine: true,
-        horizontalInterval: 1,
-        verticalInterval: 1,
-        getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            //color: Color(0xff37434d),
-            strokeWidth: 0,
-          );
-        },
-        getDrawingVerticalLine: (value) {
-          return const FlLine(
-            //color: Color(0xff37434d),
-            strokeWidth: 0,
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-
-
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
-      ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(0.5, 1),
-            FlSpot(1, 2),
-            FlSpot(2.2, 0.3),
-            FlSpot(2.6, 0.5),
-            FlSpot(3.0, 2.0),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(9.6, 4),
-            FlSpot(9.7, 5.0),
-            FlSpot(9.8, 1.4),
-            FlSpot(10, 2.0),
-            FlSpot(10.2, 5),
-            FlSpot(10.3, 3.1),
-            FlSpot(10.5, 4),
-            FlSpot(10.6, 3),
-            FlSpot(10.9, 4),
-            FlSpot(11, 5.0),
-          ],
-          isCurved: false,
-          gradient: LinearGradient(
-            colors: gradientColors,
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
-          barWidth: 2,
-          isStrokeCapRound: true,
-          dotData: const FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              colors: gradientColors
-                  .map((color) => color.withOpacity(0.3))
-                  .toList(),
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  LineChartData avgData() {
-    return LineChartData(
-      gridData: FlGridData(
-        show: false,
-        drawVerticalLine: false,
-        horizontalInterval: 0,
-        verticalInterval: 0,
-        getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: Colors.teal,
-            strokeWidth: 0,
-          );
-        },
-        getDrawingVerticalLine: (value) {
-          return const FlLine(
-            color: Colors.grey,
-            strokeWidth: 0,
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: false,
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-      ),
-      borderData: FlBorderData(
-        show: false,
-        //border: Border.all(color: const Color(0xff37434d)),
-      ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
-          ],
-          isCurved: true,
-          gradient: LinearGradient(
-            colors: gradientColors,
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
-          barWidth: 5,
-          isStrokeCapRound: false,
-          dotData: const FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              colors: gradientColors
-                  .map((color) => color.withOpacity(0.3))
-                  .toList(),
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
