@@ -44,8 +44,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white,
                 ),
                 Spacer(),
-                Icon(Icons.account_balance_wallet,
-                    size: 30, color: Colors.white),
+                Icon(
+                  Icons.account_balance_wallet,
+                  size: 30,
+                  color: Colors.white,
+                ),
               ],
             ),
           ),
@@ -164,14 +167,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           // Navigation Indicators
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(3, (index) {
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                width: _currentPage == index ? 25 : 10,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 3,
+                ),
+                width: _currentPage == index ? 30 : 6,
                 height: 6,
                 decoration: BoxDecoration(
                   color: _currentPage == index
@@ -288,6 +293,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          Container(
+            height: 60,
+            width: double.infinity,
+          )
         ],
       ),
     );

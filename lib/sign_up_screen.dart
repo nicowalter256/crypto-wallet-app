@@ -109,7 +109,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // Background Blur
                         ClipRRect(
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                            filter:
+                                ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                             child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.black.withOpacity(0.2),
@@ -207,7 +208,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   // Social Button Builder
-  Widget _buildSocialButton({required VoidCallback onTap, required String asset, required String label}) {
+  Widget _buildSocialButton(
+      {required VoidCallback onTap,
+      required String asset,
+      required String label}) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),

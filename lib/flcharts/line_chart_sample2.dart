@@ -1,9 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:crypto_wallet/flcharts/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'app_resources.dart';
 
 class LineChartSample2 extends StatefulWidget {
   const LineChartSample2({super.key});
@@ -13,175 +10,157 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-  List<Color> gradientColors = [
+  List<Color> bitcoinGradientColors = [
     Color.fromARGB(255, 34, 255, 159),
-    Color.fromARGB(255, 20, 138, 87)
+    Color.fromRGBO(32, 39, 55, 1),
+  ];
+  List<Color> ethereumgradientColors = [
+    Color.fromRGBO(234, 80, 90, 1),
+    Color.fromRGBO(32, 39, 55, 1),
   ];
 
-  bool showAvg = false;
+  bool showAvg = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+      ),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            height: 175,
-            width: 175,
-            //margin: EdgeInsets.only(left: 20),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).primaryColor.withOpacity(0.5)
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              border: Border.all(
-                color: Theme.of(context).primaryColor,
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: Stack(
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: LineChart(
-                        showAvg ? avgData() : mainData(),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 00,
-                    right: 00,
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          showAvg = !showAvg;
-                        });
-                      },
-                      child: Text(
-                        '+12.62%',
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: showAvg
-                                ? const Color.fromARGB(255, 34, 255, 159)
-                                : Color.fromARGB(255, 34, 255, 159)),
-                      ),
-                    ),
-                  ),
-                  const Positioned(
-                    top: 15,
-                    left: 20,
-                    child: Text(
-                      'BitCoin',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 15,
-                    left: 20,
-                    child: Image.asset(
-                      'assets/bitcoin.png',
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          _buildChartCard(
+            context,
+            'BitCoin',
+            '+12.62%',
+            'assets/bitcoin.png',
+            '\$43,114.57',
+            mainData(), // Pass the mainData for Bitcoin chart
           ),
-          Container(
-            height: 175,
-            width: 175,
-            //margin: EdgeInsets.only(right: 20),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.blue.withOpacity(0.4),
-                  Colors.purple.withOpacity(0.6),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Stack(
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: LineChart(
-                    showAvg ? avgData() : mainData(),
-                  ),
-                ),
-                Positioned(
-                  top: 20,
-                  right: 20,
-                  child: SizedBox(
-                    width: 40,
-                    height: 34,
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          showAvg = !showAvg;
-                        });
-                      },
-                      child: Text(
-                        'avg',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: showAvg
-                              ? Colors.white.withOpacity(0.5)
-                              : Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          _buildChartCard(
+            context,
+            'Ethereum',
+            '+5.87%',
+            'assets/etherium.png',
+            '\$3,245.65',
+            ethereumData(), // Pass the ethereumData for Ethereum chart
           ),
         ],
       ),
     );
   }
 
+  Widget _buildChartCard(
+      BuildContext context,
+      String title,
+      String percentChange,
+      String assetPath,
+      String price,
+      LineChartData chartData) {
+    return Container(
+      height: 175,
+      width: 175,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).primaryColor,
+            Theme.of(context).primaryColor.withOpacity(0.8),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        border: Border.all(
+          color: Theme.of(context).primaryColor,
+        ),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(0),
+        child: Stack(
+          children: <Widget>[
+            AspectRatio(
+              aspectRatio: 1,
+              child: LineChart(chartData),
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    showAvg = !showAvg;
+                  });
+                },
+                child: Text(
+                  percentChange,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: const Color.fromARGB(255, 34, 255, 159),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 15,
+              left: 20,
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 15,
+              left: 20,
+              child: Image.asset(assetPath),
+            ),
+            Positioned(
+              bottom: 15,
+              right: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    title == 'BitCoin' ? 'BTC' : 'ETH',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Color.fromRGBO(97, 105, 117, 100),
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  Text(
+                    price,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Line chart data for Bitcoin
   LineChartData mainData() {
     return LineChartData(
       gridData: FlGridData(
         show: false,
-        drawVerticalLine: false,
-        horizontalInterval: 1,
-        verticalInterval: 1,
-        getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: AppColors.mainGridLineColor,
-            strokeWidth: 1,
-          );
-        },
-        getDrawingVerticalLine: (value) {
-          return const FlLine(
-            color: AppColors.mainGridLineColor,
-            strokeWidth: 1,
-          );
-        },
       ),
       titlesData: const FlTitlesData(
-        show: false, // Disable titles for axes
+        show: false,
       ),
       borderData: FlBorderData(
         show: false,
-        border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
       maxX: 11,
@@ -198,21 +177,22 @@ class _LineChartSample2State extends State<LineChartSample2> {
             FlSpot(9.5, 3),
             FlSpot(11, 4),
           ],
-          isCurved: false,
+          isCurved: true,
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: bitcoinGradientColors,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          barWidth: 1,
+          barWidth: 3,
           isStrokeCapRound: true,
-          dotData: const FlDotData(
-            show: false,
-          ),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: gradientColors
+              colors: bitcoinGradientColors
                   .map((color) => color.withOpacity(0.1))
                   .toList(),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
         ),
@@ -220,35 +200,17 @@ class _LineChartSample2State extends State<LineChartSample2> {
     );
   }
 
-  LineChartData avgData() {
+  // Line chart data for Ethereum
+  LineChartData ethereumData() {
     return LineChartData(
-      lineTouchData: const LineTouchData(enabled: false),
       gridData: FlGridData(
-        show: true,
-        drawHorizontalLine: true,
-        verticalInterval: 1,
-        horizontalInterval: 1,
-        getDrawingVerticalLine: (value) {
-          return const FlLine(
-            color: Color.fromARGB(255, 34, 255, 159),
-            strokeWidth: 1,
-          );
-        },
-        getDrawingHorizontalLine: (value) {
-          return const FlLine(
-            color: Color.fromARGB(255, 34, 255, 159),
-            strokeWidth: 1,
-          );
-        },
+        show: false,
       ),
       titlesData: const FlTitlesData(
-        show: false, // Disable titles for axes
+        show: false,
       ),
       borderData: FlBorderData(
         show: false,
-        border: Border.all(
-          color: const Color(0xff37434d),
-        ),
       ),
       minX: 0,
       maxX: 11,
@@ -257,39 +219,33 @@ class _LineChartSample2State extends State<LineChartSample2> {
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
+            FlSpot(0, 2),
+            FlSpot(2.6, 3.5),
+            FlSpot(4.9, 4),
+            FlSpot(6.8, 3),
+            FlSpot(8, 2.5),
+            FlSpot(9.5, 3),
+            FlSpot(11, 4.5),
           ],
-          isCurved: false,
+          isCurved: true,
           gradient: LinearGradient(
             colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
+              ethereumgradientColors[0].withOpacity(1),
+              ethereumgradientColors[1].withOpacity(0.5),
             ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          barWidth: 5,
+          barWidth: 3,
           isStrokeCapRound: true,
-          dotData: const FlDotData(
-            show: false,
-          ),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-              ],
+              colors: ethereumgradientColors
+                  .map((color) => color.withOpacity(0.1))
+                  .toList(),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
           ),
         ),
