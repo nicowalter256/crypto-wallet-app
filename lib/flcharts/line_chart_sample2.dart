@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:crypto_wallet/flcharts/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +14,8 @@ class LineChartSample2 extends StatefulWidget {
 
 class _LineChartSample2State extends State<LineChartSample2> {
   List<Color> gradientColors = [
-    AppColors.contentColorCyan,
-    AppColors.contentColorBlue,
+    Color.fromARGB(255, 34, 255, 159),
+    Color.fromARGB(255, 20, 138, 87)
   ];
 
   bool showAvg = false;
@@ -38,6 +40,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
+              ),
+              border: Border.all(
+                color: Theme.of(context).primaryColor,
               ),
               borderRadius: BorderRadius.circular(20),
             ),
@@ -66,11 +71,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
                       child: Text(
                         '+12.62%',
                         style: TextStyle(
-                          fontSize: 12,
-                          color: showAvg
-                              ? Colors.white.withOpacity(0.5)
-                              : Colors.white,
-                        ),
+                            fontSize: 12,
+                            color: showAvg
+                                ? const Color.fromARGB(255, 34, 255, 159)
+                                : Color.fromARGB(255, 34, 255, 159)),
                       ),
                     ),
                   ),
@@ -80,8 +84,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
                     child: Text(
                       'BitCoin',
                       style: TextStyle(
+                        fontSize: 15,
                         color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                   ),
@@ -175,7 +180,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         show: false, // Disable titles for axes
       ),
       borderData: FlBorderData(
-        show: true,
+        show: false,
         border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
@@ -225,13 +230,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         horizontalInterval: 1,
         getDrawingVerticalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
+            color: Color.fromARGB(255, 34, 255, 159),
             strokeWidth: 1,
           );
         },
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: Color(0xff37434d),
+            color: Color.fromARGB(255, 34, 255, 159),
             strokeWidth: 1,
           );
         },
@@ -240,8 +245,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
         show: false, // Disable titles for axes
       ),
       borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        show: false,
+        border: Border.all(
+          color: const Color(0xff37434d),
+        ),
       ),
       minX: 0,
       maxX: 11,
@@ -258,7 +265,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             FlSpot(9.5, 3.44),
             FlSpot(11, 3.44),
           ],
-          isCurved: true,
+          isCurved: false,
           gradient: LinearGradient(
             colors: [
               ColorTween(begin: gradientColors[0], end: gradientColors[1])
