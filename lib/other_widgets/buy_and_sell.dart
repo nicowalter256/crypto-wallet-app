@@ -13,7 +13,7 @@ class _BuyAndSellState extends State<BuyAndSell> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
           onTap: () {
@@ -24,7 +24,7 @@ class _BuyAndSellState extends State<BuyAndSell> {
           },
           child: Container(
             height: 50,
-            width: 180,
+            width: 175,
             decoration: BoxDecoration(
               color: isFirstButtonActive
                   ? const Color.fromARGB(167, 34, 255, 159)
@@ -55,7 +55,7 @@ class _BuyAndSellState extends State<BuyAndSell> {
           },
           child: Container(
             height: 50,
-            width: 180,
+            width: 175,
             decoration: BoxDecoration(
               color: isSecondButtonActive
                   ? const Color.fromARGB(255, 236, 35, 89)
