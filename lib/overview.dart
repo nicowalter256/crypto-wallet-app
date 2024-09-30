@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './tabviews/general_tab.dart';
 import './tabviews/transaction_tab.dart';
 import './tabviews/analytics_tab.dart';
+import './other_widgets/buy_and_sell.dart';
 
 class Overview extends StatefulWidget {
   const Overview({super.key});

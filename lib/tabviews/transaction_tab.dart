@@ -12,7 +12,7 @@ class _TransactionTabState extends State<TransactionTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: Center(
+      body: const Center(
         child: Padding(
           padding: EdgeInsets.all(10),
           child: Column(
