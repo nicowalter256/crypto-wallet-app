@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           blurRadius: 5,
                           color: Color.fromRGBO(76, 27, 181, 100),
                           blurStyle: BlurStyle.outer,
-                        )
+                        ),
                       ],
                       gradient: LinearGradient(
                         colors: scrollGradientColors,
