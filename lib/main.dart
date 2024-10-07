@@ -1,4 +1,5 @@
 import 'package:crypto_wallet/home_screen.dart';
+import 'package:crypto_wallet/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_wallet/splash_screen1.dart';
 import './flcharts/line_chart_sample2.dart';
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Overview(),
-      //home: HomeScreen(),
+      home: const Overview(),
+      //home: SignUpScreen(),
+      //home: SplashScreen1(),
     );
   }
 }
