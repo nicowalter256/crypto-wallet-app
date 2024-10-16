@@ -2,7 +2,6 @@ import 'package:crypto_wallet/home_screen.dart';
 import 'package:crypto_wallet/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_wallet/splash_screen1.dart';
-import './flcharts/line_chart_sample2.dart';
 import './overview.dart';
 
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Crypto Wallet',
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(32, 39, 55, 100),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
