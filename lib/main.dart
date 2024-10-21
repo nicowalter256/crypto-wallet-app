@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const Overview(),
-      home: SignUpScreen(),
-      //home: SplashScreen1(),
+      //home: SignUpScreen(),
+      home: SplashScreen1(),
     );
   }
 }
